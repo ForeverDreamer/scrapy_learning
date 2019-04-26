@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+# 2.1. Simple Usage
+
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 # import sys
