@@ -1,0 +1,13 @@
+setup.py
+m1_d11_ItemLoader/__init__.py
+m1_d11_ItemLoader/items.py
+m1_d11_ItemLoader/middlewares.py
+m1_d11_ItemLoader/pipelines.py
+m1_d11_ItemLoader/settings.py
+m1_d11_ItemLoader/spiders/__init__.py
+m1_d11_ItemLoader/spiders/product_scraper.py
+project.egg-info/PKG-INFO
+project.egg-info/SOURCES.txt
+project.egg-info/dependency_links.txt
+project.egg-info/entry_points.txt
+project.egg-info/top_level.txt
