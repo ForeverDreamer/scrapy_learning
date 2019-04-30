@@ -7,7 +7,7 @@ from m1_d11_ItemLoader.items import ProductItem
 
 
 class ProductDetails(scrapy.Spider):
-    name  = 'amazon_product_scraper_itemloader'
+    name = 'amazon_product_scraper_itemloader'
 
     start_urls = ['https://www.amazon.in/s/ref=nb_sb_noss_2?url=search-alias%3Daps&field-keywords=macbook']
 
