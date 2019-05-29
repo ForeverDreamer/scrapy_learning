@@ -1,6 +1,5 @@
 import re
 import csv
-
 import scrapy
 from scrapy.loader import ItemLoader
 from w3lib.html import replace_escape_chars
@@ -9,7 +8,8 @@ from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
 from m2_d03_BroadCrawler.items import EmailItem
 
-# CrawlSpider is the most commonly used spider for crawling regular websites, 
+
+# CrawlSpider is the most commonly used spider for crawling regular websites,
 # as it provides a convenient mechanism for following links by defining a set of rules
 
 # Scrapy uses 'twisted' which is asynchronous. If you set concurrent_requests as 10 then, it will 
@@ -30,7 +30,6 @@ from m2_d03_BroadCrawler.items import EmailItem
 
 
 class BroadCrawl(CrawlSpider):
-
     name = 'scrape_emails'
 
     start_urls = ['http://www.columbia.edu/',
@@ -42,7 +41,6 @@ class BroadCrawl(CrawlSpider):
     rules = (Rule(LinkExtractor(), callback='parse_item'),)
 
     def parse_item(self, response):
-       
         loader_object = ItemLoader(item=EmailItem(), response=response)
 
         loader_object.default_output_processor = MapCompose(lambda x: x.strip(), replace_escape_chars)
