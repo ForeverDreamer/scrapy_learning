@@ -1,0 +1,10 @@
+﻿# 缓存
+__pycache__
+*.pyc
+.ipynb_checkpoints
+
+# pycharm项目配置
+.idea
+
+# 日志
+*.log

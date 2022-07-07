@@ -1,0 +1,39 @@
+1.下载安装
+1)tesseract
+  windows: https://github.com/UB-Mannheim/tesseract/wiki
+  其它系统: https://github.com/tesseract-ocr/tesseract/wiki
+2)imagemagick:
+  https://imagemagick.org/script/download.php
+
+2.环境变量
+# 新增环境变量
+变量名：TESSDATA_PREFIX
+变量值：C:\Program Files\Tesseract-OCR\tessdata
+
+# 把路径加入系统path
+C:\Program Files\Tesseract-OCR\
+%TESSDATA_PREFIX%
+C:\Program Files\ImageMagick-7.0.8-Q16
+
+
+3.下载语言库
+中文简体：https://github.com/tesseract-ocr/tessdata/raw/master/chi_sim.traineddata
+中文繁体：https://github.com/tesseract-ocr/tessdata/raw/master/chi_tra.traineddata
+
+
+4.使用
+# 中文简体
+tesseract chinese.jpg chinese -l chi_sim
+
+# 中文繁体
+tesseract chinese.jpg chinese -l chi_tra
+
+# 默认英文，且语言库内置不用下载
+tesseract chinese.jpg chinese
+
+
+5.注意事项
+1)正常文字图片中有干扰图案或者图片像素过低会导致无法识别，最好单独对文字部分截图并保证足够高的像素，例如5.jpg, 6.jpg, 7.jpg无法识别,
+  8.jpg只能部分识别，识别准确率很高
+
+2)验证码图片识别效果很差，只能识别很简单的验证码，稍微有一些图案干扰就无法识别

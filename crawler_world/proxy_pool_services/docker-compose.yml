@@ -1,0 +1,27 @@
+version: "3.7"
+
+services:
+    redis:
+      container_name: pps_redis
+      image: redis:5.0.5-stretch
+      ports:
+        - "6379:6379"
+      networks:
+        - pps-network
+
+    web:
+      container_name: pps_web
+      image: doerlee/pps_web
+      build:
+        context: .
+        dockerfile: docker/pps_web.dockerfile
+      ports:
+        - "8000:8000"
+      depends_on:
+        - redis
+      networks:
+        - pps-network
+
+networks:
+    pps-network:
+      driver: bridge
