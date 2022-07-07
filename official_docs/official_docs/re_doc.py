@@ -13,7 +13,7 @@ def displaymatch(match):
 
 # Regular Expression Examples
 # 1 Checking for a Pair
-valid = re.compile(r"^[a2-9tjqk]{5}$")
+valid = re.compile(r"^[a2-9tjqk]{5}$", re.DEBUG)
 displaymatch(valid.match("akt5q"))
 displaymatch(valid.match("akt5e"))  # Invalid.
 displaymatch(valid.match("akt"))    # Invalid.

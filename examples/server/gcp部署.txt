@@ -1,0 +1,6 @@
+pip3 install django==2.2
+# 创建防火墙规则，开放入站tcp，52010端口
+sudo python3 manage.py runserver 0.0.0.0:52010
+
+netstat -ntlp
+lsof -t -i tcp:52010 | xargs kill -9

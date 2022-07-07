@@ -28,8 +28,15 @@ class GenSpiderCrawl(CrawlSpider):
     # We restrict the extracted links to just 3 languages
     # We block the Chinese, French and Russian pages with the deny rule
     # Only Spanish, Arabic and English 
-    rules = (Rule(LinkExtractor(allow='funds-programmes-specialized-agencies-and-others',
-                                deny=('zh/sections', 'fr/sections', 'ru/sections')), callback='parse_page'),)
+    rules = (
+        Rule(
+            LinkExtractor(
+                allow='funds-programmes-specialized-agencies-and-others',
+                deny=('zh/sections', 'fr/sections', 'ru/sections')
+            ),
+            callback='parse_page'
+        ),
+    )
 
     def parse_page(self, response):
 

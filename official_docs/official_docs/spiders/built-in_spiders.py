@@ -1,80 +1,77 @@
-# -*- coding: utf-8 -*-
-
 # scrapy.Spider examples
 
-# import scrapy
+import scrapy
 # from official_docs.items import MyItem
-#
-#
-#
-# class MySpider(scrapy.Spider):
-#     name = 'myspider'
-#
-#     # example 1
-#     # def start_requests(self):
-#     #     return [scrapy.FormRequest("http://www.example.com/login",
-#     #                                formdata={'user': 'john', 'pass': 'secret'},
-#     #                                callback=self.logged_in)]
-#     #
-#     # def logged_in(self, response):
-#     #     # here you would extract links to follow and return Requests for
-#     #     # each of them, with another callback
-#     #     self.logger.info(response.text)
-#
-#
-#     # example 2
-#     # allowed_domains = ['example.com']
-#     # start_urls = [
-#     #     'http://www.example.com/1.html',
-#     #     'http://www.example.com/2.html',
-#     #     'http://www.example.com/3.html',
-#     # ]
-#     #
-#     # def parse(self, response):
-#     #     self.logger.info('A response from %s just arrived!', response.url)
-#
-#
-#     # example 3
-#     # allowed_domains = ['example.com']
-#     # start_urls = [
-#     #     'http://www.example.com/1.html',
-#     #     'http://www.example.com/2.html',
-#     #     'http://www.example.com/3.html',
-#     # ]
-#     #
-#     # def parse(self, response):
-#     #     for h3 in response.xpath('//h3').getall():
-#     #         yield {"title": h3}
-#     #
-#     #     for href in response.xpath('//a/@href').getall():
-#     #         yield scrapy.Request(response.urljoin(href), self.parse)
-#
-#
-#     # example 4
-#     # allowed_domains = ['example.com']
-#     #
-#     # def start_requests(self):
-#     #     yield scrapy.Request('http://www.example.com/1.html', self.parse)
-#     #     yield scrapy.Request('http://www.example.com/2.html', self.parse)
-#     #     yield scrapy.Request('http://www.example.com/3.html', self.parse)
-#     #
-#     # def parse(self, response):
-#     #     for h3 in response.xpath('//h3').getall():
-#     #         yield MyItem(title=h3)
-#     #
-#     #     for href in response.xpath('//a/@href').getall():
-#     #         yield scrapy.Request(response.urljoin(href), self.parse)
-#
-#
-#     # example 5
-#     # def __init__(self, category=None, *args, **kwargs):
-#     #     super(MySpider, self).__init__(*args, **kwargs)
-#     #     self.start_urls = ['http://www.example.com/categories/%s' % category]
-#
-#
-#     # example 6
-#     def start_requests(self):
-#         yield scrapy.Request('http://www.example.com/categories/%s' % self.category)
+
+
+class MySpider(scrapy.Spider):
+    name = 'myspider'
+
+    # example 1
+    # def start_requests(self):
+    #     return [scrapy.FormRequest("http://www.example.com/login",
+    #                                formdata={'user': 'john', 'pass': 'secret'},
+    #                                callback=self.logged_in)]
+    #
+    # def logged_in(self, response):
+    #     # here you would extract links to follow and return Requests for
+    #     # each of them, with another callback
+    #     self.logger.info(response.text)
+
+
+    # example 2
+    # allowed_domains = ['example.com']
+    # start_urls = [
+    #     'http://www.example.com/1.html',
+    #     'http://www.example.com/2.html',
+    #     'http://www.example.com/3.html',
+    # ]
+    #
+    # def parse(self, response):
+    #     self.logger.info('A response from %s just arrived!', response.url)
+
+
+    # example 3
+    # allowed_domains = ['example.com']
+    # start_urls = [
+    #     'http://www.example.com/1.html',
+    #     'http://www.example.com/2.html',
+    #     'http://www.example.com/3.html',
+    # ]
+    #
+    # def parse(self, response):
+    #     for h3 in response.xpath('//h3').getall():
+    #         yield {"title": h3}
+    #
+    #     for href in response.xpath('//a/@href').getall():
+    #         yield scrapy.Request(response.urljoin(href), self.parse)
+
+
+    # example 4
+    # allowed_domains = ['example.com']
+    #
+    # def start_requests(self):
+    #     yield scrapy.Request('http://www.example.com/1.html', self.parse)
+    #     yield scrapy.Request('http://www.example.com/2.html', self.parse)
+    #     yield scrapy.Request('http://www.example.com/3.html', self.parse)
+    #
+    # def parse(self, response):
+    #     for h3 in response.xpath('//h3').getall():
+    #         yield MyItem(title=h3)
+    #
+    #     for href in response.xpath('//a/@href').getall():
+    #         yield scrapy.Request(response.urljoin(href), self.parse)
+
+
+    # example 5
+    # def __init__(self, category=None, *args, **kwargs):
+    #     super(MySpider, self).__init__(*args, **kwargs)
+    #     self.start_urls = ['http://www.example.com/categories/%s' % category]
+
+
+    # example 6
+    # def start_requests(self):
+    #     yield scrapy.Request('http://www.example.com/categories/%s' % self.category)
 
 
 # Generic Spiders examples
@@ -217,26 +214,26 @@
 
 
 # Combine SitemapSpider with other sources of urls:
-import scrapy
-from scrapy.spiders import SitemapSpider
-
-
-class MySpider(SitemapSpider):
-    name = 'myspider'
-    sitemap_urls = ['http://www.example.com/robots.txt']
-    sitemap_rules = [
-        ('/shop/', 'parse_shop'),
-    ]
-
-    other_urls = ['http://www.example.com/about']
-
-    def start_requests(self):
-        requests = list(super(MySpider, self).start_requests())
-        requests += [scrapy.Request(x, self.parse_other) for x in self.other_urls]
-        return requests
-
-    def parse_shop(self, response):
-        pass # ... scrape shop here ...
-
-    def parse_other(self, response):
-        pass # ... scrape other here ...
+# import scrapy
+# from scrapy.spiders import SitemapSpider
+# 
+# 
+# class MySpider(SitemapSpider):
+#     name = 'myspider'
+#     sitemap_urls = ['http://www.example.com/robots.txt']
+#     sitemap_rules = [
+#         ('/shop/', 'parse_shop'),
+#     ]
+# 
+#     other_urls = ['http://www.example.com/about']
+# 
+#     def start_requests(self):
+#         requests = list(super(MySpider, self).start_requests())
+#         requests += [scrapy.Request(x, self.parse_other) for x in self.other_urls]
+#         return requests
+# 
+#     def parse_shop(self, response):
+#         pass # ... scrape shop here ...
+# 
+#     def parse_other(self, response):
+#         pass # ... scrape other here ...
