@@ -4,3 +4,5 @@ beautifulsoup4
 requests
 lxml
 w3lib
+SQLAlchemy==1.4.39
+mysqlclient==2.1.1
